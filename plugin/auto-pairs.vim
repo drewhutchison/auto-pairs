@@ -175,6 +175,16 @@ function! AutoPairsInsert(key)
     return a:key
   end
 
+  " Ignore auto close ' if it's preceded by a <
+  if a:key == "'" && before =~ '<\s*$'
+    return a:key
+  end
+
+  " Ignore auto close ' if it's preceded by a &
+  if a:key == "'" && before =~ '&\s*$'
+    return a:key
+  end
+
   " support for ''' ``` and """
   if open == close
     " The key must be ' " `
